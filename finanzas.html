@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#183d31">
+<title>Mis finanzas</title>
+<style>
+:root{--green:#183d31;--green2:#287052;--mint:#e2efe7;--gold:#c69a4d;--blue:#6287c5;--ink:#1f2924;--muted:#738078;--paper:#f4f6f3;--card:#fff;--line:#e5eae5;--red:#b74c45}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.app{max-width:760px;margin:auto;padding:18px 15px 40px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:10px;font-weight:800}.logo{background:var(--green);color:#fff;border-radius:12px;width:38px;height:38px;display:grid;place-items:center;font-size:19px}.period{display:flex;gap:6px;align-items:center}.period select{max-width:155px}.hero{background:var(--green);color:white;border-radius:22px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:#ffffff0c;right:-50px;top:-65px}.eyebrow{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#c9ddd1;font-weight:700}.hero h1{font-size:clamp(27px,6vw,38px);margin:5px 0 15px;letter-spacing:-.04em}.hero .sub{color:#d5e3da;font-size:13px}.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid #ffffff30;padding-top:15px;margin-top:15px}.hero-stats span,.small-label{display:block;color:var(--muted);font-size:12px}.hero-stats span{color:#c9ddd1}.hero-stats strong{display:block;font-size:18px;margin-top:3px}.section{background:var(--card);border:1px solid #e9ede9;border-radius:18px;padding:17px;margin-bottom:13px;box-shadow:0 3px 12px #17332608}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}.section h2{font-size:16px;margin:0}.pill{font-size:11px;font-weight:750;background:var(--mint);color:var(--green2);padding:5px 9px;border-radius:99px}.field label{display:block;font-size:12px;color:#536158;margin-bottom:6px}.input-wrap{display:flex;align-items:center;border:1px solid #dce4dc;border-radius:11px;background:#fff;padding:0 10px}.input-wrap:focus-within{border-color:var(--green2);box-shadow:0 0 0 3px #28705215}.input-wrap input{width:100%;border:0;outline:0;padding:11px 0;background:transparent;color:var(--ink);min-width:0}.suffix{color:var(--muted);font-size:12px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.budget-list{display:grid;gap:14px}.budget-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.budget-name{font-weight:750}.budget-note{font-size:12px;color:var(--muted);margin-top:2px}.budget-number{text-align:right;font-weight:800;white-space:nowrap}.bar{height:8px;border-radius:99px;background:#edf0ed;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;border-radius:99px}.bar.green span{background:#478a67}.bar.gold span{background:var(--gold)}.bar.blue span{background:var(--blue)}.muted{color:var(--muted)}.hint{font-size:12px;color:var(--muted);margin:12px 0 0}.expense-list{display:grid;gap:9px}.expense-row{display:grid;grid-template-columns:38px minmax(0,1fr) minmax(95px,140px) 30px;gap:9px;align-items:center}.expense-icon{width:36px;height:36px;border-radius:11px;background:#f0f4f0;display:grid;place-items:center}.expense-name{font-weight:650;font-size:14px}.expense-type{font-size:11px;color:var(--muted)}.expense-row input{width:100%;min-width:0;border:1px solid #dce4dc;border-radius:9px;padding:9px 7px;text-align:right}.delete-btn{border:0;background:transparent;color:#8b9690;font-size:18px;padding:5px}.total-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:13px;padding-top:13px;font-size:13px}.btn{border:0;border-radius:11px;padding:11px 14px;font-weight:750}.btn-primary{background:var(--green);color:#fff}.btn-secondary{background:#edf3ee;color:var(--green)}.btn-outline{background:#fff;border:1px solid var(--line);color:var(--ink)}.btn-small{font-size:12px;padding:8px 10px}.actions{display:flex;flex-wrap:wrap;gap:8px}.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.split-card{background:#f5f8f5;border-radius:13px;padding:13px}.split-card label{font-size:12px;color:var(--muted);display:block;margin-bottom:5px}.split-card input{width:100%;padding:9px;border:1px solid #dce4dc;border-radius:9px}.split-card strong{display:block;margin-top:8px;font-size:18px}.tabs{display:flex;gap:6px;margin-bottom:14px;background:#e9eee9;border-radius:12px;padding:4px}.tab{flex:1;border:0;border-radius:9px;padding:10px;background:transparent;color:#526158;font-weight:700;font-size:13px}.tab.active{background:#fff;color:var(--green);box-shadow:0 1px 4px #0000000b}.movement-list{display:grid;gap:8px}.movement{display:flex;align-items:center;gap:10px;padding:10px;background:#f8faf8;border-radius:11px}.movement .grow{flex:1;min-width:0}.movement strong{display:block;font-size:13px}.movement small{color:var(--muted)}.positive{color:var(--green2)}.negative{color:var(--red)}.empty{padding:18px;text-align:center;color:var(--muted);font-size:13px}.footer{text-align:center;color:#8a958e;font-size:11px;padding:8px}.notice{padding:11px 12px;border-radius:11px;background:#fff5df;color:#78591f;font-size:12px;margin-top:10px}.hidden{display:none!important}.modal-backdrop{position:fixed;inset:0;background:#10231bd0;display:grid;place-items:center;padding:18px;z-index:5}.modal{background:#fff;border-radius:18px;padding:20px;max-width:420px;width:100%;max-height:90vh;overflow:auto}.modal h2{margin-top:0}.modal label{display:block;font-size:13px;margin:12px 0 5px}.modal input,.modal select{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff}.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+@media(min-width:650px){.app{padding:28px 22px 50px}.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 13px}.hero,.section.full{grid-column:1/-1}.hero{padding:27px}.expense-row{grid-template-columns:40px minmax(0,1fr) minmax(100px,150px) 30px}}
+@media(max-width:390px){.app{padding:12px 10px 30px}.section{padding:14px}.hero{padding:18px}.expense-row{grid-template-columns:34px minmax(0,1fr) minmax(78px,105px) 25px;gap:6px}.expense-icon{width:32px;height:32px}.form-row{grid-template-columns:1fr}.split-grid{grid-template-columns:1fr 1fr}.topbar{align-items:flex-start}.period select{max-width:125px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="logo">↗</div><span>Mis finanzas</span></div>
+    <div class="period"><select id="monthSelect" aria-label="Mes"></select><select id="yearSelect" aria-label="Año"></select></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Tu resumen mensual</div>
+      <h1>Organiza tu dinero<br>con claridad</h1>
+      <div class="sub">Controla tus ingresos, gastos, ahorro e inversión.</div>
+      <div class="hero-stats">
+        <div><span>Ingresos netos</span><strong id="heroIncome">0,00 €</strong></div>
+        <div><span>Gastos registrados</span><strong id="heroExpenses">0,00 €</strong></div>
+        <div><span>Disponible tras gastos</span><strong id="heroAvailable">0,00 €</strong></div>
+        <div><span>Ahorro + inversión</span><strong id="heroSaveInvest">0,00 €</strong></div>
+      </div>
+    </section>
+    <div class="main-grid">
+      <section class="section">
+        <div class="section-head"><h2>Ingresos</h2><span class="pill">Cada mes</span></div>
+        <div class="field"><label for="incomeInput">Ingresos netos del mes</label><div class="input-wrap"><input id="incomeInput" type="number" min="0" step="0.01" placeholder="0,00"><span class="suffix">€</span></div></div>
+        <p class="hint">Introduce el dinero neto que recibes este mes. Los cambios no alteran meses anteriores.</p>
+      </section>
+      <section class="section">
+        <div class="section-head"><h2>Reparto del presupuesto</h2><span class="pill">50 / 20 / 30</span></div>
+        <div class="budget-list" id="budgetList"></div>
+        <p class="hint">Los porcentajes son una referencia. Si tus gastos reales superan el objetivo, la aplicación te lo mostrará.</p>
+      </section>
+      <section class="section full">
+        <div class="section-head"><h2>Gastos mensuales</h2><span class="pill" id="expenseTotalPill">0,00 €</span></div>
+        <div class="expense-list" id="expenseList"></div>
+        <div class="total-row"><span>Total de gastos registrados</span><strong id="expenseTotal">0,00 €</strong></div>
+        <div class="actions" style="margin-top:13px"><button class="btn btn-secondary" id="addCategoryBtn">＋ Añadir categoría</button><button class="btn btn-outline" id="copyPrevBtn">Usar gastos del mes anterior</button></div>
+        <p class="hint">Los gastos son importes presupuestados o registrados por ti; edítalos según tu gasto real del mes.</p>
+      </section>
+      <section class="section full">
+        <div class="section-head"><h2>Ahorro e inversión</h2><span class="pill">Personalizable</span></div>
+        <p class="hint" style="margin-top:0;margin-bottom:12px">Reparte el objetivo del 30 % de tus ingresos entre ahorro e inversión. Puedes cambiarlo cada mes.</p>
+        <div class="split-grid">
+          <div class="split-card"><label for="savingsPercent">Porcentaje para ahorro</label><input id="savingsPercent" type="number" min="0" max="100" step="1" value="50"><strong id="savingsTarget">0,00 €</strong><span class="small-label">Objetivo mensual</span></div>
+          <div class="split-card"><label for="investmentPercent">Porcentaje para inversión</label><input id="investmentPercent" type="number" min="0" max="100" step="1" value="50"><strong id="investmentTarget">0,00 €</strong><span class="small-label">Objetivo mensual</span></div>
+        </div>
+        <div id="splitNotice" class="notice hidden"></div>
+        <div class="actions" style="margin-top:14px"><button class="btn btn-primary" id="addMovementBtn">＋ Registrar movimiento</button></div>
+        <div class="form-row" style="margin-top:15px">
+          <div class="split-card"><span class="small-label">Ahorro acumulado</span><strong id="savedTotal">0,00 €</strong></div>
+          <div class="split-card"><span class="small-label">Inversión aportada acumulada</span><strong id="investedTotal">0,00 €</strong></div>
+        </div>
+        <h3 style="font-size:14px;margin:18px 0 9px">Movimientos de este mes</h3>
+        <div id="movementList" class="movement-list"></div>
+      </section>
+      <section class="section full">
+        <div class="section-head"><h2>Datos y copias de seguridad</h2></div>
+        <p class="hint" style="margin-top:0;margin-bottom:13px">Los datos se guardan en este navegador y dispositivo. Exporta una copia si vas a cambiar de móvil o navegador.</p>
+        <div class="actions"><button class="btn btn-secondary" id="exportBtn">Exportar copia</button><button class="btn btn-outline" id="importBtn">Importar copia</button><button class="btn btn-outline" id="resetBtn">Borrar todos los datos</button><input type="file" id="importFile" accept="application/json,.json" class="hidden"></div>
+        <div id="storageNotice" class="hint"></div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">Tus datos se guardan en este dispositivo. No se envían a ningún servidor.</footer>
+</div>
+
+<div id="modalBackdrop" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h2 id="modalTitle">Registrar movimiento</h2>
+    <form id="movementForm">
+      <label for="movementType">Tipo de movimiento</label><select id="movementType"><option value="savings">Aportación al ahorro</option><option value="investment">Aportación a inversión</option><option value="withdrawal">Retirada de ahorro</option><option value="sale">Retirada de inversión</option></select>
+      <label for="movementAmount">Cantidad (€)</label><input id="movementAmount" type="number" min="0.01" step="0.01" required placeholder="0,00">
+      <label for="movementDescription">Descripción (opcional)</label><input id="movementDescription" maxlength="100" placeholder="Ej. Aportación mensual">
+      <div class="modal-actions"><button type="button" class="btn btn-outline" id="cancelModal">Cancelar</button><button type="submit" class="btn btn-primary">Guardar</button></div>
+    </form>
+  </div>
+</div>
+<script>
+(() => {
+'use strict';
+const KEY='misFinanzasHTML_v1';
+const MONTHS=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const DEFAULTS=[
+ {id:'casa',name:'Casa',icon:'⌂',kind:'needs',amount:0,custom:false},
+ {id:'coche',name:'Coche',icon:'🚗',kind:'needs',amount:0,custom:false},
+ {id:'luz',name:'Luz',icon:'ϟ',kind:'needs',amount:0,custom:false},
+ {id:'internet',name:'Internet y móvil',icon:'⌁',kind:'needs',amount:0,custom:false},
+ {id:'compra',name:'Compra',icon:'🛒',kind:'needs',amount:0,custom:false}
+];
+const $=id=>document.getElementById(id);
+const now=new Date();
+let selectedKey=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+let db=loadDB();
+let modalOpen=false;
+function loadDB(){try{const v=JSON.parse(localStorage.getItem(KEY)||'{}');if(v&&v.months&&v.categories)return v;}catch(e){}return {months:{},categories:DEFAULTS.map(x=>({...x})),movements:[]};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(db));$('storageNotice').textContent='Guardado automáticamente en este navegador.';}catch(e){$('storageNotice').textContent='No se pudo guardar. Exporta una copia de seguridad.';}}
+function monthKey(y,m){return `${y}-${String(m).padStart(2,'0')}`;}
+function monthObj(key=selectedKey){if(!db.months[key])db.months[key]={income:0,expenses:{},savingsPercent:50,investmentPercent:50};const o=db.months[key];if(!o.expenses)o.expenses={};if(o.income==null)o.income=0;if(o.savingsPercent==null)o.savingsPercent=50;if(o.investmentPercent==null)o.investmentPercent=50;return o;}
+function euro(n){return (Number(n)||0).toLocaleString('es-ES',{style:'currency',currency:'EUR'});}
+function number(v){const n=Number(v);return Number.isFinite(n)&&n>0?n:0;}
+function keyParts(key){const [y,m]=key.split('-').map(Number);return {y,m};}
+function getAmount(cat,key=selectedKey){const mo=monthObj(key);if(Object.prototype.hasOwnProperty.call(mo.expenses,cat.id))return number(mo.expenses[cat.id]);const {y,m}=keyParts(key);let prev=0;for(let i=1;i<m;i++){const k=monthKey(y,i);if(db.months[k]&&Object.prototype.hasOwnProperty.call(db.months[k].expenses||{},cat.id))prev=number(db.months[k].expenses[cat.id]);}if(prev>0)return prev;return number(cat.amount);}
+function categoriesFor(key=selectedKey){return db.categories.map(c=>({...c,displayAmount:getAmount(c,key)}));}
+function expensesTotal(key=selectedKey){return categoriesFor(key).reduce((s,c)=>s+c.displayAmount,0);}
+function monthMovements(key=selectedKey){return db.movements.filter(m=>m.month===key);}
+function totalsByType(type){return db.movements.filter(m=>['savings','withdrawal'].includes(m.type)&&type==='savings'||['investment','sale'].includes(m.type)&&type==='investment').reduce((s,m)=>s+(m.type==='withdrawal'||m.type==='sale'?-number(m.amount):number(m.amount)),0);}
+function renderSelectors(){
+ const ms=$('monthSelect'),ys=$('yearSelect');ms.innerHTML=MONTHS.map((m,i)=>`<option value="${i+1}">${m[0].toUpperCase()+m.slice(1)}</option>`).join('');
+ const {y,m}=keyParts(selectedKey);const years=new Set([now.getFullYear()-2,now.getFullYear()-1,now.getFullYear(),now.getFullYear()+1,now.getFullYear()+2,y]);Object.keys(db.months).forEach(k=>years.add(Number(k.slice(0,4))));
+ ys.innerHTML=[...years].sort((a,b)=>a-b).map(v=>`<option value="${v}">${v}</option>`).join('');ms.value=String(m);ys.value=String(y);
+}
+function render(){
+ renderSelectors();const mo=monthObj();const income=number(mo.income);const total=expensesTotal();const targetNeeds=income*.5,targetWants=income*.2,targetFuture=income*.3;const savePct=number(mo.savingsPercent),invPct=number(mo.investmentPercent);
+ $('incomeInput').value=mo.income||'';$('savingsPercent').value=mo.savingsPercent;$('investmentPercent').value=mo.investmentPercent;
+ $('heroIncome').textContent=euro(income);$('heroExpenses').textContent=euro(total);$('heroAvailable').textContent=euro(income-total);$('heroSaveInvest').textContent=euro(targetFuture);
+ const needs=categoriesFor().filter(c=>c.kind!=='wants').reduce((s,c)=>s+c.displayAmount,0);
+ const wants=categoriesFor().filter(c=>c.kind==='wants').reduce((s,c)=>s+c.displayAmount,0);
+ $('budgetList').innerHTML=[
+ {name:'Necesidades',desc:'Objetivo: 50 % de los ingresos',actual:needs,target:targetNeeds,color:'green'},
+ {name:'Gastos personales',desc:'Objetivo: 20 % de los ingresos',actual:wants,target:targetWants,color:'gold'},
+ {name:'Ahorro e inversión',desc:`Objetivo: 30 % · ahorro ${savePct}% / inversión ${invPct}%`,actual:monthMovements().reduce((s,m)=>s+(m.type==='savings'||m.type==='investment'?number(m.amount):0),0),target:targetFuture,color:'blue'}
+ ].map(x=>`<div><div class="budget-top"><div><div class="budget-name">${x.name}</div><div class="budget-note">${x.desc}</div></div><div class="budget-number">${euro(x.actual)}<div class="budget-note">de ${euro(x.target)}</div></div></div><div class="bar ${x.color}"><span style="width:${x.target>0?Math.min(100,x.actual/x.target*100):0}%"></span></div></div>`).join('');
+ $('expenseList').innerHTML=categoriesFor().map(c=>`<div class="expense-row"><div class="expense-icon">${escapeHTML(c.icon||'•')}</div><div><div class="expense-name">${escapeHTML(c.name)}</div><div class="expense-type">${c.kind==='wants'?'Personal / variable':'Necesidad'}</div></div><input type="number" min="0" step="0.01" aria-label="Importe de ${escapeHTML(c.name)}" data-expense="${escapeHTML(c.id)}" value="${c.displayAmount||''}" placeholder="0,00"><button class="delete-btn ${c.custom?'':'hidden'}" data-delete="${escapeHTML(c.id)}" title="Eliminar categoría" aria-label="Eliminar ${escapeHTML(c.name)}">×</button></div>`).join('');
+ $('expenseTotal').textContent=euro(total);$('expenseTotalPill').textContent=euro(total);
+ $('savingsTarget').textContent=euro(targetFuture*savePct/100);$('investmentTarget').textContent=euro(targetFuture*invPct/100);
+ $('splitNotice').classList.toggle('hidden',savePct+invPct===100);$('splitNotice').textContent=`Los porcentajes suman ${savePct+invPct} %. Lo habitual es que sumen 100 %.`;
+ $('savedTotal').textContent=euro(totalsByType('savings'));$('investedTotal').textContent=euro(totalsByType('investment'));
+ renderMovements();
+}
+function renderMovements(){const ms=monthMovements();$('movementList').innerHTML=ms.length?ms.slice().reverse().map(m=>{const sign=['withdrawal','sale'].includes(m.type)?-1:1;const names={savings:'Ahorro',investment:'Inversión',withdrawal:'Retirada de ahorro',sale:'Retirada de inversión'};return `<div class="movement"><div class="expense-icon">${m.type==='investment'?'↗':m.type==='sale'?'↙':'＋'}</div><div class="grow"><strong>${escapeHTML(m.description||names[m.type])}</strong><small>${names[m.type]}</small></div><strong class="${sign>0?'positive':'negative'}">${sign>0?'+':'−'}${euro(m.amount)}</strong><button class="delete-btn" data-movement-delete="${m.id}" aria-label="Eliminar movimiento">×</button></div>`}).join(''):'<div class="empty">Todavía no hay movimientos este mes.</div>';}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function changeMonth(){const y=Number($('yearSelect').value),m=Number($('monthSelect').value);selectedKey=monthKey(y,m);monthObj();render();}
+$('monthSelect').addEventListener('change',changeMonth);$('yearSelect').addEventListener('change',changeMonth);
+$('incomeInput').addEventListener('change',e=>{monthObj().income=number(e.target.value);persist();render();});
+$('expenseList').addEventListener('change',e=>{const id=e.target.dataset.expense;if(!id)return;monthObj().expenses[id]=number(e.target.value);persist();render();});
+$('expenseList').addEventListener('click',e=>{const id=e.target.dataset.delete;if(!id)return;if(!confirm('¿Eliminar esta categoría de la lista? Los datos históricos de meses anteriores se conservarán.'))return;db.categories=db.categories.filter(c=>c.id!==id);persist();render();});
+$('savingsPercent').addEventListener('change',e=>{monthObj().savingsPercent=Math.min(100,number(e.target.value));persist();render();});
+$('investmentPercent').addEventListener('change',e=>{monthObj().investmentPercent=Math.min(100,number(e.target.value));persist();render();});
+$('addCategoryBtn').addEventListener('click',()=>{const name=prompt('Nombre de la nueva categoría:');if(!name||!name.trim())return;const kind=confirm('¿Es un gasto personal o variable?\\nAceptar = sí, cancelar = necesidad/fijo.')?'wants':'needs';const id='cat_'+Date.now().toString(36);db.categories.push({id,name:name.trim().slice(0,50),icon:kind==='wants'?'◉':'•',kind,amount:0,custom:true});monthObj().expenses[id]=0;persist();render();});
+$('copyPrevBtn').addEventListener('click',()=>{const {y,m}=keyParts(selectedKey);const date=new Date(y,m-2,1);const prev=monthKey(date.getFullYear(),date.getMonth()+1);if(!db.months[prev]){alert('No hay datos guardados para el mes anterior.');return;}const src=monthObj(prev),dst=monthObj();if(!confirm('Copiar los importes de gastos del mes anterior a este mes? Se sustituirán los importes de este mes.'))return;dst.expenses={...src.expenses};persist();render();});
+$('addMovementBtn').addEventListener('click',()=>{$('movementForm').reset();$('modalBackdrop').classList.remove('hidden');modalOpen=true;$('movementAmount').focus();});
+function closeModal(){$('modalBackdrop').classList.add('hidden');modalOpen=false;}
+$('cancelModal').addEventListener('click',closeModal);$('modalBackdrop').addEventListener('click',e=>{if(e.target===$('modalBackdrop'))closeModal();});
+$('movementForm').addEventListener('submit',e=>{e.preventDefault();const amount=number($('movementAmount').value);if(!amount)return;db.movements.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),month:selectedKey,type:$('movementType').value,amount,description:$('movementDescription').value.trim(),date:new Date().toISOString()});persist();closeModal();render();});
+$('movementList').addEventListener('click',e=>{const id=e.target.dataset.movementDelete;if(!id)return;if(!confirm('¿Eliminar este movimiento?'))return;db.movements=db.movements.filter(m=>m.id!==id);persist();render();});
+$('exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='copia-mis-finanzas.json';a.click();URL.revokeObjectURL(a.href);});
+$('importBtn').addEventListener('click',()=>$('importFile').click());
+$('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!data.months||!data.categories||!Array.isArray(data.categories))throw new Error('Formato no válido');if(!confirm('Importar esta copia reemplazará los datos actuales. ¿Continuar?'))return;db=data;persist();render();alert('Copia importada correctamente.');}catch(err){alert('No se ha podido importar el archivo. Comprueba que sea una copia válida.');}finally{e.target.value='';}});
+$('resetBtn').addEventListener('click',()=>{if(!confirm('¿Borrar todos los ingresos, gastos y movimientos guardados en este navegador? Esta acción no se puede deshacer. Exporta una copia antes si quieres conservarlos.'))return;db={months:{},categories:DEFAULTS.map(x=>({...x})),movements:[]};persist();render();});
+window.addEventListener('keydown',e=>{if(e.key==='Escape'&&modalOpen)closeModal();});
+monthObj();persist();render();
+})();
+</script>
+</body>
+</html>
