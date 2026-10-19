@@ -53,8 +53,8 @@ button,input,select{font:inherit}button{cursor:pointer}.app{max-width:760px;marg
         <div class="section-head"><h2>Ahorro e inversión</h2><span class="pill">Personalizable</span></div>
         <p class="hint" style="margin-top:0;margin-bottom:12px">Reparte el objetivo del 30 % de tus ingresos entre ahorro e inversión. Puedes cambiarlo cada mes.</p>
         <div class="split-grid">
-          <div class="split-card"><label for="savingsPercent">Porcentaje para ahorro</label><input id="savingsPercent" type="number" min="0" max="100" step="1" value="50"><strong id="savingsTarget">0,00 €</strong><span class="small-label">Objetivo mensual</span></div>
-          <div class="split-card"><label for="investmentPercent">Porcentaje para inversión</label><input id="investmentPercent" type="number" min="0" max="100" step="1" value="50"><strong id="investmentTarget">0,00 €</strong><span class="small-label">Objetivo mensual</span></div>
+          <div class="split-card"><label for="savingsPercent">Porcentaje para ahorro</label><input id="savingsPercent" type="number" min="0" max="100" step="1" value="30"><strong id="savingsTarget">0,00 €</strong><span class="small-label">Objetivo mensual</span></div>
+          <div class="split-card"><label for="investmentPercent">Porcentaje para inversión</label><input id="investmentPercent" type="number" min="0" max="100" step="1" value="70"><strong id="investmentTarget">0,00 €</strong><span class="small-label">Objetivo mensual</span></div>
         </div>
         <div id="splitNotice" class="notice hidden"></div>
         <div class="actions" style="margin-top:14px"><button class="btn btn-primary" id="addMovementBtn">＋ Registrar movimiento</button></div>
@@ -107,7 +107,8 @@ let modalOpen=false;
 function loadDB(){try{const v=JSON.parse(localStorage.getItem(KEY)||'{}');if(v&&v.months&&v.categories)return v;}catch(e){}return {months:{},categories:DEFAULTS.map(x=>({...x})),movements:[]};}
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(db));$('storageNotice').textContent='Guardado automáticamente en este navegador.';}catch(e){$('storageNotice').textContent='No se pudo guardar. Exporta una copia de seguridad.';}}
 function monthKey(y,m){return `${y}-${String(m).padStart(2,'0')}`;}
-function monthObj(key=selectedKey){if(!db.months[key])db.months[key]={income:0,expenses:{},savingsPercent:50,investmentPercent:50};const o=db.months[key];if(!o.expenses)o.expenses={};if(o.income==null)o.income=0;if(o.savingsPercent==null)o.savingsPercent=50;if(o.investmentPercent==null)o.investmentPercent=50;return o;}
+function inheritedIncome(key){const {y,m}=keyParts(key);let yy=y,mm=m-1;for(let i=0;i<240;i++){if(mm<1){mm=12;yy--;}const k=monthKey(yy,mm);const prior=db.months[k];if(prior&&prior.incomeManual===true)return number(prior.income);if(prior&&prior.incomeManual==null&&number(prior.income)>0)return number(prior.income);mm--;}return 0;}
+function monthObj(key=selectedKey){if(!db.months[key])db.months[key]={income:inheritedIncome(key),incomeManual:false,expenses:{},savingsPercent:30,investmentPercent:70};const o=db.months[key];if(!o.expenses)o.expenses={};if(o.incomeManual==null)o.incomeManual=number(o.income)>0;if(!o.incomeManual)o.income=inheritedIncome(key);if(o.savingsPercent==null)o.savingsPercent=30;if(o.investmentPercent==null)o.investmentPercent=70;return o;}
 function euro(n){return (Number(n)||0).toLocaleString('es-ES',{style:'currency',currency:'EUR'});}
 function number(v){const n=Number(v);return Number.isFinite(n)&&n>0?n:0;}
 function keyParts(key){const [y,m]=key.split('-').map(Number);return {y,m};}
@@ -143,7 +144,7 @@ function renderMovements(){const ms=monthMovements();$('movementList').innerHTML
 function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function changeMonth(){const y=Number($('yearSelect').value),m=Number($('monthSelect').value);selectedKey=monthKey(y,m);monthObj();render();}
 $('monthSelect').addEventListener('change',changeMonth);$('yearSelect').addEventListener('change',changeMonth);
-$('incomeInput').addEventListener('change',e=>{monthObj().income=number(e.target.value);persist();render();});
+$('incomeInput').addEventListener('change',e=>{const o=monthObj();o.income=number(e.target.value);o.incomeManual=true;persist();render();});
 $('expenseList').addEventListener('change',e=>{const id=e.target.dataset.expense;if(!id)return;monthObj().expenses[id]=number(e.target.value);persist();render();});
 $('expenseList').addEventListener('click',e=>{const id=e.target.dataset.delete;if(!id)return;if(!confirm('¿Eliminar esta categoría de la lista? Los datos históricos de meses anteriores se conservarán.'))return;db.categories=db.categories.filter(c=>c.id!==id);persist();render();});
 $('savingsPercent').addEventListener('change',e=>{monthObj().savingsPercent=Math.min(100,number(e.target.value));persist();render();});
